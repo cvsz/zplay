@@ -1,7 +1,7 @@
 # ZPlay Slot Suite - Makefile
-# Commands for building, running, and managing the slot game suite
+# Commands for building, running, testing, linting, validating, and deploying
 
-.PHONY: help install build dev start clean test lint validate-template deploy deploy-vercel deploy-netlify deploy-ghpages
+.PHONY: help install build dev start clean clean-build test lint validate-template deploy deploy-vercel deploy-netlify deploy-ghpages quickstart
 
 # Default target
 help: ## Show available make targets
@@ -32,6 +32,15 @@ dev: ## Start development server with hot reload
 
 start: build ## Build and start production preview server
 	npm run preview
+
+# ------------------------------------------------------------
+# Test & Lint
+# ------------------------------------------------------------
+test: ## Run tests
+	npm run test
+
+lint: ## Run linter
+	npm run lint
 
 # ------------------------------------------------------------
 # Clean

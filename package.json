@@ -3,17 +3,39 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "ZPlay Slot Suite - 6-game Pragmatic Play style slot machine with bonuses, jackpots, IAP, and level progression",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "lint": "echo \"No linter configured yet\" && exit 0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.0"
-  }
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  },
+  "keywords": [
+    "slot-machine",
+    "casino-game",
+    "react",
+    "vite",
+    "javascript",
+    "pragmatic-play",
+    "social-casino"
+  ],
+  "author": "cvsz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cvsz/zplay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cvsz/zplay/issues"
+  },
+  "homepage": "https://github.com/cvsz/zplay#readme"
 }

@@ -1,75 +1,65 @@
-# AGENTS.md — Repository Agent Contract
+# AGENTS.md: ZPlay Slot Suite
 
-## Purpose
-This repository is a reusable GitHub project template. Changes must remain generic, secure by default, easy to customize, and safe to inherit into a newly generated repository.
+This file provides guidance for AI agents working on the ZPlay Slot Suite project.
 
-## Operating rules
-- Read README.md, CONTRIBUTING.md, SECURITY.md, ROADMAP.md, and the closest AGENTS.md before editing.
-- Keep code, configuration, filenames, commit messages, and technical documentation in English.
-- Prefer the smallest reviewable change that satisfies the requested scope.
-- Never weaken CI, security scanning, dependency review, branch protections, or release controls merely to make a check pass.
-- Never commit credentials, tokens, private keys, production endpoints, personal data, or realistic secrets. Use documented placeholders.
-- Do not invent project-specific owners, domains, deployment providers, package registries, cloud accounts, or credentials.
-- Preserve template portability across languages and frameworks unless a file explicitly declares a narrower scope.
-- Reuse existing workflows and documents instead of creating overlapping alternatives.
-- Pin permissions for GitHub Actions to least privilege and prefer maintained first-party/verified actions.
-- Treat external input, generated artifacts, pull requests from forks, and dependency metadata as untrusted.
+## Project Overview
 
-## Template placeholders
-Use obvious placeholders such as `PROJECT_NAME`, `OWNER`, `example.com`, and `REPLACE_ME`. Any generated repository must be able to find and replace placeholders without exposing secrets.
+ZPlay Slot Suite is a 6-game Pragmatic Play style slot machine suite built with React + Vite.
 
-## Review skill
+## Tech Stack
 
-- Use [Scrutinize](.agents/skills/scrutinize/SKILL.md) when asked to review, audit, sanity-check, or give a second opinion on a plan, PR, diff, design, or code change, or when invoked with `/scrutinize` in a compatible agent.
-- Question whether the change is necessary or can be smaller before tracing real code paths and verifying behavioral claims. Cite concrete file/line evidence and distinguish unverified claims from confirmed behavior.
-- The skill guides agent behavior; it does not itself install a slash command or replace required tests, CI, or human review.
+- React 18.3.1
+- Vite 5.4.0
+- npm
 
-## Project initialization
+## Key Files
 
-- For a repository created with **Use this template**, follow [docs/startup.md](docs/startup.md) and preview `scripts/bootstrap.py` before `--apply`; pass an actual GitHub user or org/team via `--codeowner` and verify write access.
-- Do not present an initialized scaffold as a running or production-ready system; bootstrap changes project identity and ownership routing only.
-- Replace Makefile and Dockerfile placeholders with actual project-specific commands and images before enabling an application delivery pipeline.
-- Never overwrite existing application code, production secrets, DNS ownership or original license attribution during initialization.
+| File | Purpose |
+|------|---------|
+| `src/App.jsx` | Main application component with all game logic |
+| `src/App.css` | Styles and design tokens |
+| `src/main.jsx` | React entry point |
+| `vite.config.js` | Vite configuration |
+| `package.json` | Project manifest |
+| `Makefile` | Build/deploy commands |
 
-## Change workflow
-1. Inspect the current exact branch/head and existing files.
-2. Identify the smallest missing or inconsistent template capability.
-3. Add tests or validation first when practical.
-4. Implement without widening scope.
-5. Run the relevant validation and security checks.
-6. Update documentation when behavior, setup, governance, or release procedures change.
-7. Open a pull request; do not claim merge/release readiness without exact-head evidence.
+## Game Configuration
 
-## Verification
-At minimum, verify Markdown/YAML syntax for touched files, workflow permissions/triggers, links and placeholders, absence of committed secrets, and consistency between README, templates, governance, security, and release documentation.
+Edit `src/App.jsx` to modify:
+- `SYMBOLS` — Symbol definitions (id, name, color, weight, payout)
+- `GAMES` — Game configurations (paylines, bet limits, RTP, volatility)
+- `PAYLINE_PATTERNS` — Payline patterns for each payline count
 
-## Pull requests and releases
-PRs must state scope, tests, security impact, compatibility/migration impact, documentation impact, deployment impact, and rollback. Releases require green required checks and explicit evidence; never infer production readiness from documentation alone.
+## Available Commands
+
+```bash
+make install    # Install dependencies
+make build      # Build for production
+make dev        # Start development server
+make start      # Build and start preview
+make test       # Run tests
+make lint       # Run linter
+make clean      # Remove build output
+```
+
+## Testing
+
+Add tests in the project root or `tests/` directory. Run with `make test`.
+
+## Linting
+
+Add ESLint/Prettier configuration. Run with `make lint`.
+
+## Deployment
+
+```bash
+make deploy-vercel    # Deploy to Vercel
+make deploy-netlify   # Deploy to Netlify
+make deploy-ghpages   # Deploy to GitHub Pages
+```
 
 ## Security
-Report vulnerabilities through SECURITY.md, not public issues. Security-related templates must redirect sensitive reports accordingly. Fail closed when a security-sensitive configuration is incomplete.
 
-## Documentation ownership
-- `.github/`: GitHub automation, community health, ownership, issue/PR templates.
-- `docs/`: versioned engineering, operations, release, repository-administration, and rollout guidance.
-- `docs/adr/`: architecture decision records.
-- Root Markdown files: repository-wide policy and project lifecycle guidance.
-
-## Nested AGENTS.md
-Add a child AGENTS.md only when a subtree has durable rules that differ from this contract. The nearest AGENTS.md may add stricter local requirements but must not weaken repository-wide security rules.
-
-
-## ZEAZ reusable execution layer
-
-- Use [ZEAZ-INTRODUCTION.md](ZEAZ-INTRODUCTION.md) as the cross-agent execution framework.
-- Use [docs/ai/README.md](docs/ai/README.md) to select task-specific reusable prompts and playbooks.
-- Task playbooks are additive and never weaken this repository contract or narrower subtree rules.
-- Use the canonical evidence-state definitions and decision rule in [ZEAZ-INTRODUCTION.md](ZEAZ-INTRODUCTION.md); do not redefine them per harness or playbook.
-- Keep implementation, verification, deployment, and production readiness as distinct states.
-
-
-## Existing-repository rollout
-
-When applying this template to an established repository, follow [docs/repository-rollout.md](docs/repository-rollout.md). Audit the target first and port only missing compatible controls. Do not overwrite repository-specific AGENTS rules, CI matrices, release workflows, infrastructure ownership, or operational evidence merely to match this template.
-
-For repository administration, `scripts/github_admin.py` requires an authenticated GitHub identity with Administration permission. Treat successful read-back verification—not script presence—as evidence that the controls are effective.
+- Never commit `.env` files
+- Copy `.env.example` to `.env` for local development
+- This is a social/demo game — not for real-money gambling
