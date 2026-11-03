@@ -38,3 +38,27 @@ jobs:
         shell: bash
         run: |
           ruby -e 'require "yaml"; Dir.glob(".github/**/*.{yml,yaml}").each { |f| YAML.load_file(f); puts "ok #{f}" }'
+
+  build-and-test:
+    needs: repository-baseline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@1908453428b18b9d8f5608ff983f110637ec863b # v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build for production
+        run: npm run build
+
+      - name: Verify static output exists
+        run: |
+          test -f dist/index.html && echo "dist/index.html present"
+          test -d dist/assets && echo "dist/assets present"

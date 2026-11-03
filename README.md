@@ -1,85 +1,31 @@
-# ZPlay Slot Suite
+# zplay
 
-A 6-game Pragmatic Play style slot machine suite built with React + Vite. Features multiple payline configurations, bonus games, jackpots, in-app purchases, level progression, and social rewards.
+ZPlay Slot Suite - 6-game Pragmatic Play style slot machine with bonuses, jackpots, IAP, and level progression
 
-## Live Demo
+## Status
 
-Serve the `dist/` folder as static files, or deploy to any static host.
+Project scaffold initialized from ztemplate. Application code, runtime CI, deployment, observability, and recovery must be implemented and validated before a production release.
 
-## Quick Start
+## Getting started
 
-```bash
-make install    # Install dependencies
-make build      # Build for production
-make start      # Build and start preview server
-```
+1. Read [Startup guide](docs/startup.md) and complete [Implementation Checklist](IMPLEMENTATION-CHECKLIST.md).
+2. Set language/runtime and package manager. Replace placeholder Makefile and Dockerfile with actual implementation or remove them.
+3. Copy .env.example to .env and configure local-only, non-secret settings. Never commit .env.
+4. Add application code, tests, CI and security scanners applicable to your stack.
+5. Define ownership in .github/CODEOWNERS and SECURITY.md, then configure repository rulesets.
 
-Or for development:
+## Architecture and operations
 
-```bash
-make install
-make dev        # Development server with hot reload
-```
+- [Architecture](docs/architecture.md)
+- [Development](docs/development.md)
+- [Release](docs/release.md)
+- [Startup decisions](docs/startup.md)
+- [Cloudflare/DNS ownership contract](docs/cloudflare-terraform.md)
 
-## Features
+## Security
 
-### 6 Slot Games
-| Game | Paylines | Min Bet | Max Bet | RTP | Unlock Level |
-|------|----------|---------|---------|-----|-------------|
-| Lucky 9 Lines | 9 | 1 | 100 | 96.5% | 1 |
-| Ten Line Treasure | 10 | 1 | 150 | 96.8% | 2 |
-| 25 Payline Fortune | 25 | 5 | 250 | 97.0% | 5 |
-| 30 Line Jackpot | 30 | 10 | 300 | 97.2% | 10 |
-| 40 Line Empire | 40 | 20 | 500 | 97.5% | 15 |
-| Scatter Win Riches | Scatter | 5 | 200 | 96.9% | 8 |
+Report vulnerabilities through [GitHub security](https://github.com/cvsz/zplay/security) or the private channel documented in [SECURITY.md](SECURITY.md). Never include vulnerabilities or credentials in public issues.
 
-### Bonus Games
-- **Spin the Wheel** — Triggered by 3+ SCATTER symbols
-- **Discover the Treasure** — Pick chest bonuses triggered by 3+ BONUS symbols
-- **Reveal a Credit Value** — Instant credit reveal bonus
-- **Reveal a Credit Value with Jackpot** — Jackpot tier reveal bonus
+## License
 
-### Features
-- Jackpot feature (random chance based on bet size)
-- In-App Purchases (buy credits: $4.99–$99.99)
-- Collect 200 credits every 2 hours
-- Level progression (XP-based unlocks)
-- Facebook share (+500 credits) / Like page (+300 credits)
-- Auto Spin (10 automatic spins)
-- Adjustable bet per line (1–500)
-- Responsive layout (desktop 1440px, tablet 768px, phone 390px)
-
-## Project Structure
-
-```
-zplay/
-├── dist/              # Built static site (deploy this)
-├── src/
-│   ├── App.jsx        # Main slot suite component
-│   ├── App.css        # Styles with design tokens
-│   └── main.jsx       # React entry point
-├── index.html         # HTML entry point
-├── package.json       # Vite/React project
-├── vite.config.js     # Build config
-├── Makefile           # Build/deploy commands
-└── .github/           # CI/CD and project config
-```
-
-## Deployment
-
-```bash
-make deploy-vercel    # Deploy to Vercel
-make deploy-netlify   # Deploy to Netlify
-make deploy-ghpages   # Deploy to GitHub Pages
-```
-
-Or serve `dist/` as static files from any web server.
-
-## Built With
-
-- [React](https://react.dev/) — UI framework
-- [Vite](https://vitejs.dev/) — Build tool and dev server
-
----
-
-This repository was generated from the [cvsz/ztemplate](https://github.com/cvsz/ztemplate) project template.
+Review LICENSE copyright and choose a license before your first release. Template source retains the original copyright attribution where legally required.
