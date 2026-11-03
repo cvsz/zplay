@@ -1,34 +1,60 @@
-SHELL := /bin/sh
+# ZPlay Slot Suite - Makefile
+# Commands for building, running, and managing the slot game suite
 
-.PHONY: help validate-template setup format lint test build security ci
+.PHONY: help install build dev start clean test lint deploy deploy-vercel deploy-netlify deploy-ghpages
 
-help:
-	@printf '%s\n' 'Targets:' \
-		'  make validate-template - Run repository structure and link validation' \
-		'  make test              - Run python unit tests' \
-		'  make lint              - Run python syntax and structure checks' \
-		'  make build             - Run compilation check on scripts' \
-		'  make security          - Run security and validation checks' \
-		'  make ci                - Run full CI validation suite'
+# Default target
+help: ## Show available make targets
+	@echo "ZPlay Slot Suite - Available Commands:"
+	@echo ""
+	@awk 'BEGIN {FS = ":.*##"; printf "  \033[36m%-20s\033[0m %s\n", "target", "description"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-validate-template:
-	python3 scripts/validate_repo.py
-	python3 -m unittest discover -s tests -v
+# ------------------------------------------------------------
+# Setup
+# ------------------------------------------------------------
+install: ## Install npm dependencies
+	npm install
 
-format:
-	python3 -m py_compile scripts/*.py tests/*.py
+# ------------------------------------------------------------
+# Build & Run
+# ------------------------------------------------------------
+build: ## Build the project for production
+	npm run build
 
-lint:
-	python3 -m py_compile scripts/*.py tests/*.py
-	python3 scripts/validate_repo.py
+dev: ## Start development server with hot reload
+	npm run dev
 
-test:
-	python3 -m unittest discover -s tests -v
+start: build ## Build and start production preview server
+	npm run preview
 
-build:
-	python3 -m py_compile scripts/*.py
+# ------------------------------------------------------------
+# Clean
+# ------------------------------------------------------------
+clean: ## Remove build output and node_modules
+	rm -rf dist
+	rm -rf node_modules
+	rm -f package-lock.json
 
-security:
-	python3 scripts/validate_repo.py
+clean-build: ## Remove only build output
+	rm -rf dist
 
-ci: validate-template lint test build security
+# ------------------------------------------------------------
+# Deploy
+# ------------------------------------------------------------
+deploy-vercel: build ## Deploy to Vercel
+	npx vercel --prod
+
+deploy-netlify: build ## Deploy to Netlify
+	npx netlify deploy --prod --dir=dist
+
+deploy-ghpages: build ## Deploy to GitHub Pages
+	npx gh-pages -d dist
+
+deploy: build ## Build for deployment (output in dist/)
+	@echo "Build complete. Static files are in dist/"
+	@echo "Deploy dist/ to any static host (Vercel, Netlify, GitHub Pages, S3, etc.)"
+
+# ------------------------------------------------------------
+# Quick start (install + build + preview)
+# ------------------------------------------------------------
+quickstart: install build start ## Install, build, and start preview server
