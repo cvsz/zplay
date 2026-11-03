@@ -1,13 +1,19 @@
 # ZPlay Slot Suite - Makefile
 # Commands for building, running, and managing the slot game suite
 
-.PHONY: help install build dev start clean test lint deploy deploy-vercel deploy-netlify deploy-ghpages
+.PHONY: help install build dev start clean test lint validate-template deploy deploy-vercel deploy-netlify deploy-ghpages
 
 # Default target
 help: ## Show available make targets
 	@echo "ZPlay Slot Suite - Available Commands:"
 	@echo ""
 	@awk 'BEGIN {FS = ":.*##"; printf "  \033[36m%-20s\033[0m %s\n", "target", "description"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+
+# ------------------------------------------------------------
+# Template validation
+# ------------------------------------------------------------
+validate-template: ## Validate repository structure and Markdown links per ztemplate
+	python3 scripts/validate_repo.py
 
 # ------------------------------------------------------------
 # Setup
