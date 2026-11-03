@@ -1,49 +1,38 @@
-# Environment and secrets
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-
 # Dependencies
 node_modules/
-.venv/
-venv/
-__pycache__/
-*.py[cod]
+.pnp
+.pnp.js
 
 # Build output
 dist/
-build/
-coverage/
-.next/
-.nuxt/
-.out/
+dist-ssr/
+*.local
 
-# Tool caches
-.cache/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.eslintcache
+# Environment files
+.env
+.env.local
+.env.*.local
 
-# IDE / OS
-.DS_Store
-Thumbs.db
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
 .idea/
 .vscode/*
 !.vscode/extensions.json
-!.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw.*
 
-# Logs
-*.log
-logs/
+# OS
+.DS_Store
+Thumbs.db
 
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.*
-
-# Local runtime data
+# Misc
 .tmp/
 tmp/
+*.log
