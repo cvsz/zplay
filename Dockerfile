@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Production stage: serve static files with NGINX
-FROM nginx:1.27-alpine AS runtime
+FROM nginx:1.31-alpine AS runtime
 
 LABEL maintainer="maintainers@example.com"
 LABEL description="ZPlay Slot Suite - 6-game Pragmatic Play style slot machine"
